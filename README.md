@@ -7,7 +7,7 @@
 A nice little utility too that automates multiple file creation and renaming. A trivial task for Linux jockeys, a tiring one for the "non-enlightened".<br>
 Oh! And there's a GUI too! (means you get buttons to click! click! and other stuff ;) )
 
-## TODO :boom: ?
+## Features :boom: ???
 
 - [ ] Create many files in a go!
 - [ ] File names with up to 4 string/number patterns
@@ -17,6 +17,14 @@ Oh! And there's a GUI too! (means you get buttons to click! click! and other stu
 - [ ] Recursive rename on directories
 
 coming soon :stuck_out_tongue_closed_eyes:
+
+## TODO
+
+- [X] Create GUI
+- [ ] Logic for pattern generation
+- [ ] Funcationality #1 (create files)
+- [ ] Logic for pattern search in dir
+- [ ] Funcationality #2 (rename files)
 
 ## Built with
 - [Python3](https://www.python.org/)
