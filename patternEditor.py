@@ -1,6 +1,15 @@
 import tkinter as tk
 
 class Editor:
+    
+    def ok_button_clicked(self):
+        #   Take user input for the patter parameters-
+        #   String pattern has only one value- a single string value
+        #   A number pattern has three parameters -start -stop -step
+        #   Number patterns will loop from start[user ip, default=1]
+        #   to end[user ip, def=10] with step[also user ip, def=1]
+        print("Write my code please!")
+
     def __init__(self, master, widget_class):
 
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -44,6 +53,7 @@ class Editor:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''OK''')
+        self.Button2.configure(command=self.ok_button_clicked)
 
         self.Labelframe2 = tk.LabelFrame(self.master)
         self.Labelframe2.place(relx=0.289, rely=0.056, relheight=0.268
