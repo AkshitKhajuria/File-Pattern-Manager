@@ -62,6 +62,7 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
+import patternEditor
 
 class Pattern_Widget:
     
@@ -70,21 +71,31 @@ class Pattern_Widget:
         self.master = master
         self.frame = tk.Frame(self.master)
         self.pat_type = "Str"
-        self.pattern_button = tk.Button(self.frame, text = self.pat_type, width=10)
+        self.pattern_button = tk.Button(self.frame, text = self.pat_type, width=10, command=self.new_window)
         self.pattern_button.pack(fill=tk.BOTH, expand=True)
         self.frame.pack(fill=tk.Y, side=tk.LEFT, padx=2, pady=4)
 
+    def new_window(self):
+        self.newWindow = tk.Toplevel(self.master)
+        self.app = patternEditor.Editor(self.newWindow)
+
     def setType(self, t):
         # The type of pattern can be "Str" (for strings) or "Int" for numbers
-        self.pat_type = t
-        
+        self.pat_type = t      
+
 
 class Toplevel1:
 
     def addPattern(self, master):
+        if (self.no_patterns>3):
+            print("Number of patterns limited to 4!")
+            return None
+        self.no_patterns = self.no_patterns+1
         Pattern_Widget(master)
 
+
     def __init__(self, top=None):
+        self.no_patterns = 0
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -97,7 +108,7 @@ class Toplevel1:
         top.minsize(176, 1)
         top.maxsize(1924, 1050)
         top.resizable(1, 1)
-        top.title("New Toplevel")
+        top.title("File Pattern Manager")
         top.configure(background="#d9d9d9")
 
         self.Labelframe1 = tk.LabelFrame(top)
@@ -151,6 +162,4 @@ class Toplevel1:
 
 if __name__ == '__main__':
     vp_start_gui()
-
-
 
