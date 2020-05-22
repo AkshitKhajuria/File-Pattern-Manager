@@ -25,6 +25,9 @@ coming soon :stuck_out_tongue_closed_eyes:
 - [ ] Logic for pattern search in dir
 - [ ] Funcationality #2 (rename files)
 
+## Top Contributors! :rocket: 
+[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/0)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/0)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/1)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/1)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/2)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/2)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/3)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/3)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/4)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/4)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/5)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/5)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/6)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/6)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/7)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/7)
+
 ## Built with
 - [Python3](https://www.python.org/)
 - [PAGE](http://page.sourceforge.net/)
