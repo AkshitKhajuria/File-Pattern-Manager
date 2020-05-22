@@ -70,18 +70,36 @@ class Pattern_Widget:
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
-        self.pat_type = "Str"
-        self.pattern_button = tk.Button(self.frame, text = self.pat_type, width=10, command=self.new_window)
+
+        self.types = {0:"String", 1:"Number"} #Good for some book keeping
+        self.pat_type = 0   #this variable holds the currently equipped pattern
+        self.lock = 1   #A lock to make sure only one Editor window is opened per button
+
+        self.pattern_button = tk.Button(self.frame, text="String", width=10, command=self.new_window)
         self.pattern_button.pack(fill=tk.BOTH, expand=True)
         self.frame.pack(fill=tk.Y, side=tk.LEFT, padx=2, pady=4)
 
     def new_window(self):
-        self.newWindow = tk.Toplevel(self.master)
-        self.app = patternEditor.Editor(self.newWindow)
+        
+        def on_closing():
+            #Release lock
+            self.lock = 1
+            #Close window
+            self.newWindow.destroy()
+        
+        if(self.lock):
+            #Set lock
+            self.lock = 0
+            self.newWindow = tk.Toplevel(self.master)
+            #Open editor window
+            self.app = patternEditor.Editor(self.newWindow, self)
+            self.newWindow.protocol("WM_DELETE_WINDOW", on_closing)
 
-    def setType(self, t):
-        # The type of pattern can be "Str" (for strings) or "Int" for numbers
-        self.pat_type = t      
+
+    def set_type(self, t):
+        # The type of pattern can be 0 for "String" or 1 for "Number"
+        self.pat_type = t
+        self.pattern_button.configure(text=self.types[t])      
 
 
 class Toplevel1:
