@@ -9,14 +9,13 @@ Oh! And there's a GUI too! (means you get buttons to click! click! and other stu
 
 ## Features :boom: ???
 
+coming soon :stuck_out_tongue_closed_eyes:
 - [ ] Create many files in a go!
 - [ ] File names with up to 4 string/number patterns
 - [ ] Awesome GUI
 - [ ] Rename file names matching given pattern (non-regex)
 - [ ] Rename file names matching given Regex pattern
 - [ ] Recursive rename on directories
-
-coming soon :stuck_out_tongue_closed_eyes:
 
 ## TODO
 
