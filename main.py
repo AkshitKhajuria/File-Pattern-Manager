@@ -111,6 +111,18 @@ class Toplevel1:
         self.no_patterns = self.no_patterns+1
         Pattern_Widget(master)
 
+    def create_button_clicked(self):
+        #   Logic for creating patterns
+        #   Patterns need to follow the pattern criteria set by user
+        #   A Pattern can be a set of numbes and/or strings
+        #   While strings are constant, number patterns will loop from start[user ip, default=1]
+        #   to end[user ip, def=10]
+        #   with step[also user ip, def=1]
+        #   For eg: A patter starting with string "Larry" followed by numbers 1-5
+        #   So we need to make 5 dirs with names "Larry1", "Larry2", .... "Larry5"
+        #   Create a list of such pattern strings and then make dirs with names in that list
+        print("Oops! Someone has been lazy!")
+
 
     def __init__(self, top=None):
         self.no_patterns = 0
@@ -176,6 +188,7 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Create''')
+        self.Button2.configure(command=self.create_button_clicked)
 
 
 if __name__ == '__main__':
