@@ -19,49 +19,6 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
-
-def init(top, gui, *args, **kwargs):
-    global w, top_level, root
-    w = gui
-    top_level = top
-    root = top
-
-
-def destroy_window():
-    # Function which closes the window.
-    global top_level
-    top_level.destroy()
-    top_level = None
-
-
-def vp_start_gui():
-    '''Starting point when module is the main routine.'''
-    global val, w, root
-    root = tk.Tk()
-    top = Toplevel1 (root)
-    init(root, top)
-    root.mainloop()
-
-
-w = None
-
-def create_Toplevel1(rt, *args, **kwargs):
-    '''Starting point when module is imported by another module.
-       Correct form of call: 'create_Toplevel1(root, *args, **kwargs)' .'''
-    global w, w_win, root
-    #rt = root
-    root = rt
-    w = tk.Toplevel (root)
-    top = Toplevel1 (w)
-    init(w, top, *args, **kwargs)
-    return (w, top)
-
-
-def destroy_Toplevel1():
-    global w
-    w.destroy()
-    w = None
-
 import patternEditor
 
 class Pattern_Widget:
@@ -192,5 +149,7 @@ class Toplevel1:
 
 
 if __name__ == '__main__':
-    vp_start_gui()
+    root = tk.Tk()
+    top = Toplevel1 (root)
+    root.mainloop()
 
