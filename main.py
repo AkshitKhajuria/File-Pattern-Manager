@@ -21,9 +21,10 @@ except ImportError:
 
 import patternEditor
 
+no_patterns = 0
+
 class Pattern_Widget:
     
-    pat_type = ""
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -33,8 +34,17 @@ class Pattern_Widget:
         self.lock = 1   #A lock to make sure only one Editor window is opened per button
 
         self.pattern_button = tk.Button(self.frame, text="String", width=10, command=self.new_window)
-        self.pattern_button.pack(fill=tk.BOTH, expand=True)
-        self.frame.pack(fill=tk.Y, side=tk.LEFT, padx=2, pady=4)
+        self.pattern_button.bind("<Button-3>", self.remove_pattern)
+        self.pattern_button.pack(fill=tk.BOTH, expand=True, padx=2, pady=4)
+        self.frame.pack(fill=tk.Y, side=tk.LEFT)
+
+    
+    def remove_pattern(self, event):
+        self.frame.destroy()
+        global no_patterns
+        no_patterns = no_patterns-1
+        del self
+
 
     def new_window(self):
         
@@ -62,10 +72,11 @@ class Pattern_Widget:
 class Toplevel1:
 
     def addPattern(self, master):
-        if (self.no_patterns>3):
+        global no_patterns
+        if (no_patterns>3):
             print("Number of patterns limited to 4!")
             return None
-        self.no_patterns = self.no_patterns+1
+        no_patterns = no_patterns+1
         Pattern_Widget(master)
 
     def create_button_clicked(self):
@@ -82,7 +93,6 @@ class Toplevel1:
 
 
     def __init__(self, top=None):
-        self.no_patterns = 0
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
