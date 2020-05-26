@@ -22,18 +22,17 @@ except ImportError:
 import patternEditor
 
 no_patterns = 0
+pattern_list = []
 
 class Pattern_Widget:
     
     def __init__(self, master):
+        
         self.master = master
         self.frame = tk.Frame(self.master)
+        self.editor = patternEditor.Editor(self)
 
-        self.types = {0:"String", 1:"Number"} #Good for some book keeping
-        self.pat_type = 0   #this variable holds the currently equipped pattern
-        self.lock = 1   #A lock to make sure only one Editor window is opened per button
-
-        self.pattern_button = tk.Button(self.frame, text="String", width=10, command=self.new_window)
+        self.pattern_button = tk.Button(self.frame, text="String", width=10, command=self.open_editor)
         self.pattern_button.bind("<Button-3>", self.remove_pattern)
         self.pattern_button.pack(fill=tk.BOTH, expand=True, padx=2, pady=4)
         self.frame.pack(fill=tk.Y, side=tk.LEFT)
@@ -43,30 +42,30 @@ class Pattern_Widget:
         self.frame.destroy()
         global no_patterns
         no_patterns = no_patterns-1
+        global pattern_list
+        pattern_list.remove(self)
         del self
 
 
-    def new_window(self):
+    def open_editor(self):
         
         def on_closing():
-            #Release lock
-            self.lock = 1
+            #Return the button to normal state
+            self.pattern_button.configure(state="normal")
             #Close window
             self.newWindow.destroy()
         
-        if(self.lock):
-            #Set lock
-            self.lock = 0
-            self.newWindow = tk.Toplevel(self.master)
-            #Open editor window
-            self.app = patternEditor.Editor(self.newWindow, self)
-            self.newWindow.protocol("WM_DELETE_WINDOW", on_closing)
+        #Set the button disabled. We want only one editor for a pattern button
+        self.pattern_button.configure(state="disabled")
+        self.newWindow = tk.Toplevel(self.master)
+        #Open editor window
+        self.editor.show_Editor(self.newWindow)
+        self.newWindow.protocol("WM_DELETE_WINDOW", on_closing)
 
 
-    def set_type(self, t):
+    def set_button_text(self, t:str):
         # The type of pattern can be 0 for "String" or 1 for "Number"
-        self.pat_type = t
-        self.pattern_button.configure(text=self.types[t])      
+        self.pattern_button.configure(text=t)      
 
 
 class Toplevel1:
@@ -77,7 +76,9 @@ class Toplevel1:
             print("Number of patterns limited to 4!")
             return None
         no_patterns = no_patterns+1
-        Pattern_Widget(master)
+        x=Pattern_Widget(master)
+        global pattern_list
+        pattern_list.append(x)
 
     def create_button_clicked(self):
         #   Logic for creating patterns
@@ -90,6 +91,9 @@ class Toplevel1:
         #   So we need to make 5 dirs with names "Larry1", "Larry2", .... "Larry5"
         #   Create a list of such pattern strings and then make dirs with names in that list
         print("Oops! Someone has been lazy!")
+        global pattern_list
+        for i in pattern_list:
+            print(i)
 
 
     def __init__(self, top=None):
