@@ -22,6 +22,7 @@ except ImportError:
 import patternEditor
 
 no_patterns = 0
+max_patterns = 4
 pattern_list = []
 
 class Pattern_Widget:
@@ -52,6 +53,7 @@ class Pattern_Widget:
         def on_closing():
             #Return the button to normal state
             self.pattern_button.configure(state="normal")
+            self.editor.ok_button_clicked()
             #Close window
             self.newWindow.destroy()
         
@@ -71,30 +73,48 @@ class Pattern_Widget:
 class Toplevel1:
 
     def addPattern(self, master):
-        global no_patterns
-        if (no_patterns>3):
-            print("Number of patterns limited to 4!")
+        global no_patterns, max_patterns, pattern_list
+        if (no_patterns>max_patterns-1):
+            print("Number of patterns limited to {}!".format(max_patterns))
             return None
         no_patterns = no_patterns+1
         x=Pattern_Widget(master)
-        global pattern_list
         pattern_list.append(x)
 
     def create_button_clicked(self):
-        #   Logic for creating patterns
-        #   Patterns need to follow the pattern criteria set by user
-        #   A Pattern can be a set of numbes and/or strings
-        #   While strings are constant, number patterns will loop from start[user ip, default=1]
-        #   to end[user ip, def=10]
-        #   with step[also user ip, def=1]
-        #   For eg: A patter starting with string "Larry" followed by numbers 1-5
-        #   So we need to make 5 dirs with names "Larry1", "Larry2", .... "Larry5"
-        #   Create a list of such pattern strings and then make dirs with names in that list
-        print("Oops! Someone has been lazy!")
-        global pattern_list
-        for i in pattern_list:
-            print(i)
+        '''  Logic for creating patterns
+          Patterns need to follow the pattern criteria set by user
+          A Pattern can be a set of numbes and/or strings
+          While strings are constant, number patterns will loop from start[user ip, default=1]
+          to end[user ip, def=10]
+          with step[also user ip, def=1]
+          For eg: A patter starting with string "Larry" followed by numbers 1-5
+          So we need to make 5 dirs with names "Larry1", "Larry2", .... "Larry5"
+          Create a list of such pattern strings and then make dirs with names in that list
+          While the above example sounds simple, but we can have patterns with multiple numeric
+          patterns. These patterns need to run like a click counter with strings appearing in between
+          correctly; Not so trivial task now, is it? ''' 
 
+        global pattern_list
+        #Initilize the list with the first pattern.
+        generated_patterns = pattern_list[0].editor.get_pattern()
+
+        for i in pattern_list[1:]: 
+            '''Concatinate every element in generated_patterns list with the next pattern 
+            Then replace the generated_patterns list with this new list. Every pattern sequence is 
+            built upon previously generated patterns. I know a tree could be used for better understandable
+            code, but that means adding tons of more code. Plus this is more efficient.'''
+            i_ = i.editor.get_pattern()
+            tmp = []
+            for j in i_:
+                x = [element+j for element in generated_patterns]
+                tmp.extend(x)
+            generated_patterns = tmp
+        
+        
+        print(generated_patterns)
+
+        
 
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
