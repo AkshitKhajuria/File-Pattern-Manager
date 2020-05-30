@@ -20,7 +20,7 @@ coming soon :stuck_out_tongue_closed_eyes:
 ## TODO
 
 - [X] Create GUI
-- [ ] Logic for pattern generation
+- [X] Logic for pattern generation
 - [ ] Funcationality #1 (create files)
 - [ ] Logic for pattern search in dir
 - [ ] Funcationality #2 (rename files)
