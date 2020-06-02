@@ -10,20 +10,18 @@ Oh! And there's a GUI too! (means you get buttons to click! click! and other stu
 ## Features :boom: ???
 
 coming soon :stuck_out_tongue_closed_eyes:
-- [ ] Create many files in a go!
-- [ ] File names with up to 4 string/number patterns
-- [ ] Awesome GUI
-- [ ] Rename file names matching given pattern (non-regex)
-- [ ] Rename file names matching given Regex pattern
-- [ ] Recursive rename on directories
+- [X] Create many files in a go!
+- [X] File names with up to 4 string/number patterns
+- [ ] Rename file names matching given pattern
+- [ ] Advanced regex pattern matching
 
 ## TODO
 
 - [X] Create GUI
 - [X] Logic for pattern generation
-- [ ] Funcationality #1 (create files)
-- [ ] Logic for pattern search in dir
+- [X] Funcationality #1 (create files)
 - [ ] Funcationality #2 (rename files)
+- [ ] Advanced regex pattern matching to rename/remove files
 
 ## Top Contributors! :rocket: 
 [![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/0)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/0)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/1)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/1)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/2)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/2)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/3)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/3)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/4)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/4)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/5)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/5)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/6)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/6)[![](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/images/7)](https://sourcerer.io/fame/AkshitKhajuria/AkshitKhajuria/File-Pattern-Manager/links/7)
