@@ -1,5 +1,5 @@
 import tkinter as tk
-#from tkinter import messagebox as mb
+from tkinter import messagebox
 
 class Editor:
     
@@ -12,11 +12,27 @@ class Editor:
         
         #If it's set to string options, get the str_value
         if self.pat_type:
-            self.get_num_values()
+            try:
+                self.get_num_values()
+            except ValueError:
+                messagebox.showerror(title="Invalid Input", message="Enter numeric imput only!")
+                return
+            else:
+                # self.widget_class.pattern_button.configure(state="normal")
+                self.master.destroy()
         
         #Otherwise get the num_pattern
         else:
-            self.get_str_val()
+            try:
+                self.get_str_val()
+            except ValueError:
+                messagebox.showwarning(title="Empty Field", message="You have left the pattern empty!")
+                return
+            else:
+                self.widget_class.pattern_button.configure(state="normal")
+            finally:
+                self.master.destroy()
+
 
     def __init__(self, widget_class):
 
@@ -53,18 +69,18 @@ class Editor:
         self.Labelframe1.configure(text='''Configure''')
         self.Labelframe1.configure(background="#d9d9d9")
         
-        # self.Button2 = tk.Button(self.master)
-        # self.Button2.place(relx=0.393, rely=0.791, height=52, width=98)
-        # self.Button2.configure(activebackground="#ececec")
-        # self.Button2.configure(activeforeground="#000000")
-        # self.Button2.configure(background="#d9d9d9")
-        # self.Button2.configure(disabledforeground="#a3a3a3")
-        # self.Button2.configure(foreground="#000000")
-        # self.Button2.configure(highlightbackground="#d9d9d9")
-        # self.Button2.configure(highlightcolor="black")
-        # self.Button2.configure(pady="0")
-        # self.Button2.configure(text='''OK''')
-        # self.Button2.configure(command=self.ok_button_clicked)
+        self.Button2 = tk.Button(self.master)
+        self.Button2.place(relx=0.393, rely=0.791, height=52, width=98)
+        self.Button2.configure(activebackground="#ececec")
+        self.Button2.configure(activeforeground="#000000")
+        self.Button2.configure(background="#d9d9d9")
+        self.Button2.configure(disabledforeground="#a3a3a3")
+        self.Button2.configure(foreground="#000000")
+        self.Button2.configure(highlightbackground="#d9d9d9")
+        self.Button2.configure(highlightcolor="black")
+        self.Button2.configure(pady="0")
+        self.Button2.configure(text='''OK''')
+        self.Button2.configure(command=self.ok_button_clicked)
 
         self.Labelframe2 = tk.LabelFrame(self.master)
         self.Labelframe2.place(relx=0.289, rely=0.056, relheight=0.268
@@ -192,31 +208,42 @@ class Editor:
         self.neo_Entry4.insert(0, str(self.num_pattern[2]))
     
     def get_str_val(self):
-        self.str_value = self.seo_Entry1.get()
+        s = self.seo_Entry1.get()
+        self.str_value = s
+        if s=='':
+            #You CAN have empty patterns, but it will raise a ValueError as well
+            raise ValueError()
 
     def get_num_values(self):
         '''For number patterns, get the values [start, stop, step] from entry widgets.
         Catches ValueError if non-numeric input is entered.'''
-        try:
-            x = int(self.neo_Entry2.get().strip())
-            y = int(self.neo_Entry3.get().strip())
-            z = int(self.neo_Entry4.get().strip())
-        except ValueError:
-            print("Please enter numeric input only.") 
-            print("Number pattern set to {}".format(self.num_pattern))
-        else:
-            self.num_pattern[0] = x
-            self.num_pattern[1] = y
-            self.num_pattern[2] = z
+        x = int(self.neo_Entry2.get().strip())
+        y = int(self.neo_Entry3.get().strip())
+        z = int(self.neo_Entry4.get().strip())
+        self.num_pattern[0] = x
+        self.num_pattern[1] = y
+        self.num_pattern[2] = z
+        # try:
+        #     x = int(self.neo_Entry2.get().strip())
+        #     y = int(self.neo_Entry3.get().strip())
+        #     z = int(self.neo_Entry4.get().strip())
+        # except ValueError:
+        #     messagebox.showerror(title="Invalid Input",message="For number patterns, please \nenter numeric input only.")
+        #     print("Number pattern set to {}".format(self.num_pattern))
+        # else:
+        #     self.num_pattern[0] = x
+        #     self.num_pattern[1] = y
+        #     self.num_pattern[2] = z
 
     def get_pattern(self):
         if self.pat_type:
             t = self.num_pattern
             x = []
+            #Return the number pattern as list of strings.
             for i in range(t[0], t[1]+1, t[2]):
                 x.append(str(i))
             return x
         else:
-            t = []
-            t.append(self.str_value)
-            return t
+            # Return the string value packed in a list.
+            # This helps to prevent iterating through the string itself.
+            return [self.str_value]
